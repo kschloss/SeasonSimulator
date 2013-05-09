@@ -29,4 +29,25 @@ public class Team {
     {
         return Name;
     }
+    
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj == null)
+            return false;
+        if(obj == this)
+            return true;
+        if(!(obj instanceof Team))
+            return false;
+        
+        Team rhs = (Team) obj;
+        
+        return Name.equals(rhs);
+    }
+    
+    @Override
+    public int hashCode()
+    {
+        return Name.hashCode();
+    }
 }

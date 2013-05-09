@@ -34,11 +34,11 @@ public class Week {
             {
                 if(x == m)
                     return;
-                if(x.Team1.getName().equals(m.Team1.getName())
-                        && x.Team2.getName().equals(m.Team2.getName()))
+                if(x.Team1.equals(m.Team1)
+                        && x.Team2.equals(m.Team2))
                     return;
-                if(x.Team1.getName().equals(m.Team2.getName())
-                        && x.Team2.getName().equals(m.Team1.getName()))
+                if(x.Team1.equals(m.Team2)
+                        && x.Team2.equals(m.Team1))
                    return; 
             }
             Matches.add(m);
