@@ -5,6 +5,7 @@
 package seasonsimulator;
 
 import java.util.ArrayList;
+import java.lang.Thread;
 /**
  *
  * @author Kevin
@@ -46,9 +47,28 @@ public class Week {
         }
     }
     
-    public void simulate()
+    public void simulate() 
     {
+        System.out.println("Simulating week #"+WeekNumber);
+        ArrayList<Thread> matchThreads = new ArrayList();
+        for(int x = 0; x < Matches.size(); x++)
+        {
+            matchThreads.add(new Thread(Matches.get(x)));
+            matchThreads.get(x).start();
+        }
         
+        for(Thread th : matchThreads)
+        {
+            try
+            {
+                th.join();
+            }
+            catch(InterruptedException e)
+            {
+                System.err.println("Main thread interrupted");
+                System.err.println(e.getStackTrace());
+            }
+        }
     }
             
 }

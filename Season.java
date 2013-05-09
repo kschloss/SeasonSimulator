@@ -64,7 +64,8 @@ public class Season {
     
     public void simulate()
     {
-        
+        for(Week w : Weeks)
+            w.simulate();
     }
     
 }

@@ -42,12 +42,18 @@ public class Team {
         
         Team rhs = (Team) obj;
         
-        return Name.equals(rhs);
+        return Name.equals(rhs.Name);
     }
     
     @Override
     public int hashCode()
     {
         return Name.hashCode();
+    }
+    
+    @Override
+    public String toString()
+    {
+        return Name;
     }
 }

@@ -8,7 +8,7 @@ package seasonsimulator;
  *
  * @author Kevin
  */
-public class Match {
+public class Match implements Runnable {
     
     Week WeekPlayed;
     Team Team1;
@@ -24,5 +24,10 @@ public class Match {
     public boolean isMaxScore()
     {
         return false;
+    }
+    
+    public void run()
+    {
+        System.out.println("Match between " + Team1 + " and " + Team2 + " has started");
     }
 }
