@@ -15,5 +15,7 @@ public class SeasonSimulator {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Season s1 = new Season();
+        s1.schedule();
     }
 }

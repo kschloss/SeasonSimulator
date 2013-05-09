@@ -4,6 +4,8 @@
  */
 package seasonsimulator;
 
+import java.util.Random;
+
 /**
  *
  * @author Kevin
@@ -19,6 +21,12 @@ public class Team {
     
     public int score()
     {
-        return 0;
+        Random rand = new Random();
+        return rand.nextInt(99) + 1;
+    }
+    
+    public String getName()
+    {
+        return Name;
     }
 }
