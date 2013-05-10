@@ -47,6 +47,16 @@ public class Week {
         }
     }
     
+    public synchronized void setMaxScore(int score)
+    {
+        MaxScore = score;
+    }
+    
+    public synchronized int getMaxScore()
+    {
+        return MaxScore;
+    }
+    
     public void simulate() 
     {
         System.out.println("Simulating week #"+WeekNumber);
