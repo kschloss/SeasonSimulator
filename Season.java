@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package seasonsimulator;
 
 import java.util.ArrayList;
@@ -20,6 +16,12 @@ public class Season {
         Weeks = new ArrayList();
     }
     
+    /**
+     * Schedule matches for each week in the season.
+     * Use a round robin format.
+     * Each team only plays one match per week
+     * and plays every other team twice
+     */
     public void schedule()
     {
         for(int x=1; x <= 10; x++)
@@ -35,11 +37,9 @@ public class Season {
             {
                 roundRobin[x][y] = week % 9 == 0 ? 9 : week % 9;
                 week++;
-                System.out.print(roundRobin[x][y]+" ");
             }
             week = week++ %9;
             week++;
-            System.out.println();
         }
         
         for(int x=0; x < 9; x++)
@@ -62,6 +62,9 @@ public class Season {
         }  
     }
     
+    /**
+     * Simulate the season. Simulate each week sequentially.
+     */
     public void simulate()
     {
         for(Week w : Weeks)

@@ -1,19 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package seasonsimulator;
 
 import java.util.Random;
+
 /**
  *
  * @author Kevin
  */
 public class Match implements Runnable {
     
-    Week WeekPlayed;
-    Team Team1;
-    Team Team2;
+    private Week WeekPlayed;
+    private Team Team1;
+    private Team Team2;
     
     public Match(Team t1, Team t2, Week w)
     {
@@ -22,6 +19,29 @@ public class Match implements Runnable {
         WeekPlayed = w;
     }
     
+    /**
+     * Get the first team
+     * @return Team1
+     */
+    public Team getTeam1()
+    {
+        return Team1;
+    }
+    
+    /**
+     * Get the second team
+     * @return Team2
+     */
+    public Team getTeam2()
+    {
+        return Team2;
+    }
+    
+    /**
+     * Check to see if this match had the highest score for the week
+     * @param score the score to check
+     * @return true iff the score is the maximum
+     */
     public boolean isMaxScore(int score)
     {
         if(score >= WeekPlayed.getMaxScore())
@@ -29,10 +49,14 @@ public class Match implements Runnable {
         return false;
     }
     
+    /**
+     * Simulate the match
+     */
     @Override
     public void run()
     {
-        System.out.println("Match between " + Team1 + " and " + Team2 + " has started");
+        System.out.println("Match between " + Team1 + " and " + Team2
+                                                    + " has started");
         Random rand = new Random();
         int delay = rand.nextInt(12000) + 3000;
         try
@@ -50,12 +74,14 @@ public class Match implements Runnable {
         
         if(score1 > score2)
         {
-            System.out.println(Team1 + " defeats " + Team2 + " "+ score1 + "-" + score2);
+            System.out.println(Team1 + " defeats " + Team2 + " "+ score1 
+                                                   + "-" + score2);
             synchronized(WeekPlayed)
             {
                 if(isMaxScore(score1))
                 {
-                    System.out.println(Team1 + "'s score is now the weeks maximum");
+                    System.out.println(Team1 + "'s score is now the weeks "
+                                                                +"maximum");
                     WeekPlayed.setMaxScore(score1);
                 }
             }
@@ -63,12 +89,14 @@ public class Match implements Runnable {
         
         if(score2 > score1)
         {
-            System.out.println(Team2 + " defeats " + Team1 + " "+ score2 + "-" + score1);
+            System.out.println(Team2 + " defeats " + Team1 + " "+ score2 
+                                                           +"-" + score1);
             synchronized(WeekPlayed)
             {
                 if(isMaxScore(score2))
                 {
-                    System.out.println(Team2 + "'s score is now the weeks maximum");
+                    System.out.println(Team2 + "'s score is now the weeks"
+                                                             +" maximum");
                     WeekPlayed.setMaxScore(score2);
                 }
             }
@@ -76,12 +104,14 @@ public class Match implements Runnable {
         
         if(score1 == score2)
         {
-            System.out.println(Team1 + " ties " + Team2 + " "+ score1 + "-" + score2);
+            System.out.println(Team1 + " ties " + Team2 + " "+ score1 + "-"
+                                                                + score2);
             synchronized(WeekPlayed)
             {
                 if(isMaxScore(score1))
                 {
-                    System.out.println(Team1 + " and " + Team2 + "'s score is now the weeks maximum");
+                    System.out.println(Team1 + " and " + Team2
+                                    + "'s score is now the weeks maximum");
                     WeekPlayed.setMaxScore(score1);
                 }
             }

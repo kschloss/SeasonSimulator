@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package seasonsimulator;
 
 import java.util.Random;
@@ -19,12 +15,20 @@ public class Team {
         Name = n;
     }
     
+    /**
+     * Generate the score for the team
+     * @return random int 1-99
+     */
     public int score()
     {
         Random rand = new Random();
         return rand.nextInt(99) + 1;
     }
     
+    /**
+     * Get the name of this team
+     * @return The name of this team
+     */
     public String getName()
     {
         return Name;

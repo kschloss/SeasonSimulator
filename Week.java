@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package seasonsimulator;
 
 import java.util.ArrayList;
@@ -14,7 +10,6 @@ public class Week {
     
     private int MaxScore;
     private int WeekNumber;
-    private Season Season;
     private ArrayList<Match> Matches; 
     
     public Week(int n)
@@ -23,11 +18,14 @@ public class Week {
         Matches = new ArrayList();
     }
     
+    /**
+     * Add a match for this week to be simulated
+     * @param m The match
+     */
     public void addMatch(Match m)
     {
         if(Matches.isEmpty()){
             Matches.add(m);
-            System.out.println("Schedule "+m.Team1.getName()+" against "+m.Team2.getName() + " in week #"+WeekNumber);
         }
         else
         {
@@ -35,28 +33,39 @@ public class Week {
             {
                 if(x == m)
                     return;
-                if(x.Team1.equals(m.Team1)
-                        && x.Team2.equals(m.Team2))
+                if(x.getTeam1().equals(m.getTeam1())
+                        && x.getTeam2().equals(m.getTeam2()))
                     return;
-                if(x.Team1.equals(m.Team2)
-                        && x.Team2.equals(m.Team1))
+                if(x.getTeam1().equals(m.getTeam2())
+                        && x.getTeam2().equals(m.getTeam1()))
                    return; 
             }
             Matches.add(m);
-            System.out.println("Schedule "+m.Team1.getName()+" against "+m.Team2.getName() + " in week #"+WeekNumber);
         }
     }
     
+    /**
+     * Set the maximum score recorded for this week
+     * @param score the maximum score recorded for this week
+     */
     public synchronized void setMaxScore(int score)
     {
         MaxScore = score;
     }
     
+    /**
+     * Get the maximum score recorded this week
+     * @return The maximum score recorded this week
+     */
     public synchronized int getMaxScore()
     {
         return MaxScore;
     }
     
+    /**
+     * Simulate the week. All matches start simultaneously
+     * in their own thread
+     */
     public void simulate() 
     {
         System.out.println("Simulating week #"+WeekNumber);
